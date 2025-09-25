@@ -2,6 +2,7 @@
 
 Advanced Customer Analytics & Strategic Insights Platform
 
+  📊 [View Business Intelligence Dashboard](https://keddenise.github.io/Business-Intelligence-Brazillian-E-Commerce/Business_Intelligence.html)
   📊 [Explore Jupyter Notebooks](notebooks/) 
   Notebooks
 - [Customer Segmentation](notebooks/03_customer_segmentation.ipynb)
