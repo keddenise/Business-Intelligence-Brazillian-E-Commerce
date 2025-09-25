@@ -1,0 +1,80 @@
+{
+  "executive_summary": {
+    "total_revenue_analyzed": 21595197.47,
+    "total_customers": 4999,
+    "average_customer_value": 4319.903474694939,
+    "analysis_period": "12 months",
+    "key_findings": [
+      "High-value segments represent significant revenue concentration",
+      "Customer retention shows declining trend after month 6",
+      "Significant opportunity in at-risk customer recovery"
+    ]
+  },
+  "segment_roi": {
+    "Champions": {
+      "customer_count": 783,
+      "total_revenue": 9827478.34,
+      "avg_customer_value": 12551.057905491698,
+      "roi_potential": "300-400%",
+      "investment_recommendation": "$50-100 per customer for retention"
+    },
+    "Loyal_Customers": {
+      "customer_count": 980,
+      "total_revenue": 7158314.800000001,
+      "avg_customer_value": 7304.402857142858,
+      "roi_potential": "200-300%",
+      "investment_recommendation": "$30-60 per customer for growth"
+    },
+    "At_Risk": {
+      "customer_count": 819,
+      "total_revenue": 665729.46,
+      "avg_customer_value": 812.8564835164834,
+      "roi_potential": "150-250%",
+      "investment_recommendation": "$20-40 per customer for win-back"
+    }
+  },
+  "investment_scenarios": {
+    "conservative": {
+      "total_investment": 50000,
+      "expected_revenue_increase": "15-20%",
+      "payback_period": "6-8 months",
+      "risk_level": "Low"
+    },
+    "moderate": {
+      "total_investment": 100000,
+      "expected_revenue_increase": "25-35%",
+      "payback_period": "8-12 months",
+      "risk_level": "Medium"
+    },
+    "aggressive": {
+      "total_investment": 200000,
+      "expected_revenue_increase": "40-60%",
+      "payback_period": "12-18 months",
+      "risk_level": "High"
+    }
+  },
+  "cohort_insights": {
+    "retention_month_1": "65.5%",
+    "retention_month_6": "53.3%",
+    "average_arpu": "$253.66",
+    "total_cohorts": 12,
+    "analysis_date": "2025-09-25"
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "Focus retention efforts on Champions and Loyal Customers",
+      "Launch win-back campaign for At Risk segment",
+      "Implement predictive churn modeling"
+    ],
+    "medium_term_goals": [
+      "Develop segment-specific value propositions",
+      "Create automated lifecycle marketing campaigns",
+      "Establish customer success programs"
+    ],
+    "long_term_strategy": [
+      "Build predictive customer lifetime value models",
+      "Implement real-time personalization",
+      "Create customer advisory boards"
+    ]
+  }
+}

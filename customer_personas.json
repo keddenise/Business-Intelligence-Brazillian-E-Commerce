@@ -1,0 +1,150 @@
+{
+  "Champions": {
+    "description": "Best customers who bought recently, buy often, and spend the most",
+    "characteristics": {
+      "avg_recency_days": 15,
+      "avg_frequency": 12,
+      "avg_monetary": 850,
+      "percentage_of_base": "8-12%"
+    },
+    "behavior_patterns": [
+      "High engagement with premium products",
+      "Responsive to exclusive offers",
+      "Strong brand loyalty",
+      "High lifetime value"
+    ],
+    "marketing_strategies": [
+      "VIP treatment and exclusive access",
+      "Premium product recommendations",
+      "Loyalty rewards and recognition",
+      "Referral incentive programs"
+    ],
+    "communication_preferences": {
+      "channels": [
+        "Email",
+        "SMS",
+        "Push notifications"
+      ],
+      "frequency": "Weekly",
+      "content_type": "Exclusive offers, new products, VIP events"
+    }
+  },
+  "Loyal Customers": {
+    "description": "Regular customers who purchase frequently with good monetary value",
+    "characteristics": {
+      "avg_recency_days": 25,
+      "avg_frequency": 8,
+      "avg_monetary": 520,
+      "percentage_of_base": "15-20%"
+    },
+    "behavior_patterns": [
+      "Consistent purchase behavior",
+      "Brand advocates",
+      "Moderate to high engagement",
+      "Price-conscious but value quality"
+    ],
+    "marketing_strategies": [
+      "Loyalty programs with tier progression",
+      "Cross-sell and upsell opportunities",
+      "Birthday and anniversary campaigns",
+      "Member-only promotions"
+    ],
+    "communication_preferences": {
+      "channels": [
+        "Email",
+        "Social media"
+      ],
+      "frequency": "Bi-weekly",
+      "content_type": "Product recommendations, loyalty rewards, tips and tutorials"
+    }
+  },
+  "Potential Loyalists": {
+    "description": "Recent customers with potential to become loyal with proper engagement",
+    "characteristics": {
+      "avg_recency_days": 35,
+      "avg_frequency": 4,
+      "avg_monetary": 280,
+      "percentage_of_base": "20-25%"
+    },
+    "behavior_patterns": [
+      "Still evaluating the brand",
+      "Moderate engagement levels",
+      "Comparison shopping behavior",
+      "Responsive to educational content"
+    ],
+    "marketing_strategies": [
+      "Educational content and tutorials",
+      "Progressive engagement campaigns",
+      "Social proof and testimonials",
+      "Gradual value demonstration"
+    ],
+    "communication_preferences": {
+      "channels": [
+        "Email",
+        "Blog",
+        "Social media"
+      ],
+      "frequency": "Weekly",
+      "content_type": "Educational content, success stories, getting started guides"
+    }
+  },
+  "At Risk": {
+    "description": "Customers who haven't purchased recently and may churn without intervention",
+    "characteristics": {
+      "avg_recency_days": 120,
+      "avg_frequency": 6,
+      "avg_monetary": 380,
+      "percentage_of_base": "15-18%"
+    },
+    "behavior_patterns": [
+      "Declining engagement",
+      "May be considering alternatives",
+      "Previous good purchase history",
+      "Responsive to win-back offers"
+    ],
+    "marketing_strategies": [
+      "Win-back campaigns with incentives",
+      "Feedback surveys and listening",
+      "Re-engagement email series",
+      "Special comeback offers"
+    ],
+    "communication_preferences": {
+      "channels": [
+        "Email",
+        "Direct mail",
+        "Phone"
+      ],
+      "frequency": "Monthly",
+      "content_type": "Win-back offers, we miss you messages, feedback requests"
+    }
+  },
+  "Lost Customers": {
+    "description": "Customers who have likely churned and require significant intervention",
+    "characteristics": {
+      "avg_recency_days": 250,
+      "avg_frequency": 3,
+      "avg_monetary": 180,
+      "percentage_of_base": "25-30%"
+    },
+    "behavior_patterns": [
+      "No recent engagement",
+      "May have switched to competitors",
+      "Low response rates",
+      "Require significant value proposition"
+    ],
+    "marketing_strategies": [
+      "Aggressive win-back campaigns",
+      "Significant discount offers",
+      "Brand repositioning messages",
+      "New product introductions"
+    ],
+    "communication_preferences": {
+      "channels": [
+        "Direct mail",
+        "Social media ads"
+      ],
+      "frequency": "Quarterly",
+      "content_type": "Major offers, brand updates, new value propositions"
+    }
+  }
+}
