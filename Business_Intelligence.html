@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Intelligence Dashboard | Data Science Portfolio</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --light-color: #f7fafc;
+            --dark-color: #2d3748;
+            --gray-color: #718096;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            margin-bottom: 25px;
+        }
+
+        /* Tech Stack Section */
+        .tech-section h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-item {
+            background: var(--light-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+
+        .tech-item:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .tech-item i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .tech-item span {
+            font-weight: 500;
+        }
+
+        /* Metrics Cards */
+        .metric-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+
+        .metric-card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .metric-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .icon-customers { background: #ebf4ff; color: #3182ce; }
+        .icon-revenue { background: #f0f9ff; color: #0ea5e9; }
+        .icon-retention { background: #f0fdf4; color: #22c55e; }
+        .icon-segments { background: #fffbeb; color: #f59e0b; }
+
+        .metric-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .metric-subtitle {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 3px;
+            transition: width 1.5s ease;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            height: 100%;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        /* Insights */
+        .insights-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .insights-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-card {
+            background: var(--light-color);
+            border-radius: 6px;
+            padding: 18px;
+            border-left: 4px solid var(--accent-color);
+            height: 100%;
+        }
+
+        .insight-priority {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .priority-high { background: #fee; color: #c53030; }
+        .priority-medium { background: #fffbeb; color: #d69e2e; }
+        .priority-low { background: #f0fdf4; color: #38a169; }
+
+        .insight-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .insight-description {
+            color: var(--gray-color);
+            line-height: 1.5;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .insight-impact {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        /* Legend */
+        .segment-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1><i class="fas fa-chart-line"></i> Business Intelligence Dashboard</h1>
+            <p class="subtitle">Advanced Customer Analytics & Strategic Insights | Brazillian E-Commerce Data</p>
+            
+            <div class="tech-section">
+                <h2><i class="fas fa-tools"></i> Tools & Technologies</h2>
+                <div class="row g-3">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Pandas</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Scikit-learn</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Matplotlib</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fas fa-chart-area"></i>
+                            <span>Seaborn</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML/CSS/JS</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <span>RFM Analysis</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="tech-item">
+                            <i class="fas fa-users"></i>
+                            <span>Cohort Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon icon-customers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <div class="metric-title">Total Customers</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">5,000</div>
+                    <div class="metric-subtitle">Analyzed across 12 cohorts</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon icon-revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div>
+                            <div class="metric-title">Total Revenue</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">$21.6M</div>
+                    <div class="metric-subtitle">61,781 transactions analyzed</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon icon-retention">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div>
+                            <div class="metric-title">6-Month Retention</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">53.3%</div>
+                    <div class="metric-subtitle">Opportunity for improvement</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 53%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon icon-segments">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div>
+                            <div class="metric-title">High-Value Customers</div>
+                        </div>
+                    </div>
+                    <div class="metric-value">35.3%</div>
+                    <div class="metric-subtitle">Generate 78.7% of revenue</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 79%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-lg-6">
+                <div class="chart-container">
+                    <h3 class="chart-title">Customer Segment Distribution</h3>
+                    <canvas id="segmentChart"></canvas>
+                    <div class="segment-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #3182ce;"></div>
+                            <span>Champions (15.7%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #2c5282;"></div>
+                            <span>Loyal (19.6%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #63b3ed;"></div>
+                            <span>Potential (19.7%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #90cdf4;"></div>
+                            <span>New (20.2%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4299e1;"></div>
+                            <span>At Risk (16.4%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #bee3f8;"></div>
+                            <span>Lost (8.4%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="chart-container">
+                    <h3 class="chart-title">Retention Analysis by Month</h3>
+                    <canvas id="retentionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Insights -->
+        <div class="insights-section mb-4">
+            <h2 class="insights-title"><i class="fas fa-lightbulb"></i> Key Strategic Insights & Recommendations</h2>
+            <div class="row g-3">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <span class="insight-priority priority-high">HIGH PRIORITY</span>
+                        <h4 class="insight-title">Revenue Concentration Risk</h4>
+                        <p class="insight-description">
+                            35.3% of customers (Champions + Loyal) generate 78.7% of total revenue. High dependency creates vulnerability.
+                        </p>
+                        <p class="insight-impact">💰 Impact: $2.8M+ revenue at risk</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <span class="insight-priority priority-high">HIGH PRIORITY</span>
+                        <h4 class="insight-title">Retention Crisis</h4>
+                        <p class="insight-description">
+                            53.3% retention at 6 months means losing 47% of customers. 1,238 customers currently at risk or lost.
+                        </p>
+                        <p class="insight-impact">📈 Opportunity: $4M+ recovery potential</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <span class="insight-priority priority-medium">MEDIUM PRIORITY</span>
+                        <h4 class="insight-title">Segment Optimization</h4>
+                        <p class="insight-description">
+                            987 Potential Loyalists can be converted to higher value segments with targeted engagement campaigns.
+                        </p>
+                        <p class="insight-impact">🎯 Target: 50% conversion = +$2.4M revenue</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <span class="insight-priority priority-medium">MEDIUM PRIORITY</span>
+                        <h4 class="insight-title">Customer Health Scoring</h4>
+                        <p class="insight-description">
+                            Implement predictive analytics to identify customers approaching churn before they reach "At Risk" status.
+                        </p>
+                        <p class="insight-impact">🔄 Prevention: 20-30% churn reduction</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <span class="insight-priority priority-low">STRATEGIC</span>
+                        <h4 class="insight-title">Cohort-Based Product Development</h4>
+                        <p class="insight-description">
+                            12 distinct acquisition cohorts show different behavior patterns. Tailor products/services to each cohort's preferences.
+                        </p>
+                        <p class="insight-impact">📊 Long-term: Sustainable growth</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="insight-card">
+                        <span class="insight-priority priority-low">STRATEGIC</span>
+                        <h4 class="insight-title">Lifecycle Marketing Automation</h4>
+                        <p class="insight-description">
+                            Implement automated campaigns for each customer journey stage to improve retention and increase customer lifetime value.
+                        </p>
+                        <p class="insight-impact">🚀 ROI: 1,750% - 2,500% expected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Initialize charts after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Segment Chart
+            const segmentCtx = document.getElementById('segmentChart').getContext('2d');
+            new Chart(segmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Champions', 'Loyal Customers', 'Potential Loyalists', 'New Customers', 'At Risk', 'Lost Customers'],
+                    datasets: [{
+                        data: [783, 980, 987, 1011, 819, 419],
+                        backgroundColor: [
+                            '#3182ce',
+                            '#2c5282',
+                            '#63b3ed',
+                            '#90cdf4',
+                            '#4299e1',
+                            '#bee3f8'
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Retention Chart
+            const retentionCtx = document.getElementById('retentionChart').getContext('2d');
+            new Chart(retentionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Month 0', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+                    datasets: [{
+                        label: 'Retention Rate',
+                        data: [100, 65.5, 61.2, 58.1, 55.8, 54.2, 53.3],
+                        borderColor: '#3182ce',
+                        backgroundColor: 'rgba(49, 130, 206, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#3182ce',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 50,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Animate progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(bar => {
+                    bar.style.width = bar.style.width || '0%';
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
